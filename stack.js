@@ -6,7 +6,7 @@ Stack.prototype = {
   depth:2,
   container:null,
   options: {},
-  defaults: $H({ keep:2, min_rotate:-5, max_rotate:5, speed:1, api_key:'', photos:25, user_id:'', tags:'', text:'', sort:'', randomize:false }),
+  defaults: $H({ keep:2, min_rotate:-5, max_rotate:5, speed:1, api_key:'', photos:25, user_id:'', tags:'', text:'', sort:'', randomize:false, onclick:null }),
   initialize:function(container, options) {
     this.container = $(container);
     this.options = this.defaults.merge(options);
@@ -14,7 +14,7 @@ Stack.prototype = {
     document.write(unescape(tag));
   },
   add:function(photos) {
-    if this.options.get('randomize') {
+    if (this.options.get('randomize')) {
       photos = photos.reverse().sort(function() {return 0.5 - Math.random()});
     }
     this.photos.push(photos); 
@@ -34,7 +34,8 @@ Stack.prototype = {
   develop:function(image_url,title) {
     var rotate_range = this.options.get('max_rotate') - this.options.get('min_rotate');
     var rotate = Math.floor(Math.random() * (rotate_range + 1)) - (rotate_range / 2);
-    var photo = new Element('div',{'class':'photo','onclick':'stack.drop()','style':'z-index:'+this.depth+';display:none;-moz-transform:rotate('+rotate+'deg);-webkit-transform:rotate('+rotate+'deg)'});
+    var photo = new Element('div',{'class':'photo','style':'z-index:'+this.depth+';display:none;-moz-transform:rotate('+rotate+'deg);-webkit-transform:rotate('+rotate+'deg)'});
+    photo.observe('click', this.options.get('onclick'));
     photo.insert(new Element('img',{'src':image_url,'alt':title}));
     photo.insert(new Element('span').update(title));
     return photo;
