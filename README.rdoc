@@ -40,15 +40,15 @@ like. In the example above we're calling `drop()` on our `stack` instance.
 
 Stack can be customized with several options. Here they are:
 
-* *api_key* => (required) your Flickr API key (see http://www.flickr.com/services/api/keys/apply/ to get yours)
-* *photos* => (optional, defaults to 25) How many photos you want in your stack
-* *user_id* => (optional) What user to pull photos from (see http://idgettr.com/ to get the user_id for a username)
-* *tags* => (optional) List of tags to search photos for
-* *text* => (optional) Open-ended text search, looks in a photo's title, description and tags
-* *sort* => (optional) How to sort the returned photos (defaults to descending by date uploaded [newest photos first])
-* *randomize* => (optional) Should stack randomize the order of the photos regardless of `sort`
-* *keep* => (optional, defaults to 2) How many photos to keep on the screen before removing ones in the background (for performance, the more you have stacked the worse the animation becomes)
-* *min_rotate* => (optional, defaults to -5) How far (in degrees) a photo can rotate counter-clockwise
-* *max_rotate* => (optional, defaults to 5) How far (in degrees) a photo can rotate clockwise
-* *speed* => (optional, defaults to 1) How long (in seconds) it takes for a photo to fade in
-* *onclick* => (optional) Function to call if a photo is clicked
+* *api_key* => [String] (required) your Flickr API key (see http://www.flickr.com/services/api/keys/apply/ to get yours)
+* *photos* => [Number] (optional, defaults to 25) How many photos you want in your stack
+* *user_id* => [String] (optional) What user to pull photos from (see http://idgettr.com/ to get the user_id for a username)
+* *tags* => [String] (optional) List of tags to search photos for
+* *text* => [String] (optional) Open-ended text search, looks in a photo's title, description and tags
+* *sort* => [String] (optional) How to sort the returned photos (defaults to descending by date uploaded [newest photos first]). Can be one of date-posted-asc, date-posted-desc, date-taken-asc, date-taken-desc, interestingness-desc, interestingness-asc, and relevance
+* *randomize* => [Boolean] (optional) Should stack randomize the order of the photos regardless of `sort`
+* *keep* => [Number] (optional, defaults to 2) How many photos to keep on the screen before removing ones in the background (for performance, the more you have stacked the worse the animation becomes)
+* *min_rotate* => [Number] (optional, defaults to -5) How far (in degrees) a photo can rotate counter-clockwise
+* *max_rotate* => [Number] (optional, defaults to 5) How far (in degrees) a photo can rotate clockwise
+* *speed* => [Number] (optional, defaults to 1) How long (in seconds) it takes for a photo to fade in
+* *onclick* => [Function] (optional) Callback when a photo is clicked
