@@ -1,4 +1,6 @@
 // Stack is a little JS library that creates a stack of photos from flickr.
+// See http://github.com/cannikin/stack
+// Copyright 2009 - Rob Cameron, http://ridingtheclutch.com
 
 var Stack = Class.create();
 Stack.prototype = {
