@@ -1,0 +1,28 @@
+.photo {
+  overflow: hidden;
+  padding: 1em;
+  }
+  .photo img {
+    border: 20px solid #ffffff;
+    background-color: #ffffff;
+    height: 300px;
+    display: block;
+    float: left;
+    overflow: hidden;
+    -moz-box-shadow: 0 0 16px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 16px rgba(0,0,0,.5);
+    }
+  .photo:hover img {
+    -moz-box-shadow: 0 0 16px rgba(0,0,0,.8);
+    -webkit-box-shadow: 0 0 16px rgba(0,0,0,.8);
+  }
+  .photo span {
+    color: #aaaaaa;
+    display: block;
+    padding: 0 20px;
+    text-align: right;
+    font-size: 85%;
+    position: relative;
+    z-index: 3;
+    top: -18px;
+    }

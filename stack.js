@@ -6,7 +6,7 @@ Stack.prototype = {
   depth:2,
   container:null,
   options: {},
-  defaults: $H({ keep:2, min_rotate:-5, max_rotate:5, fade_in:1, api_key:'', photos:25, user_id:'', tags:'', text:'', sort:'' }),
+  defaults: $H({ keep:2, min_rotate:-5, max_rotate:5, speed:1, api_key:'', photos:25, user_id:'', tags:'', text:'', sort:'', randomize:false }),
   initialize:function(container, options) {
     this.container = $(container);
     this.options = this.defaults.merge(options);
@@ -14,7 +14,10 @@ Stack.prototype = {
     document.write(unescape(tag));
   },
   add:function(photos) {
-    this.photos.push(photos.reverse().sort(function() {return 0.5 - Math.random()}));
+    if this.options.get('randomize') {
+      photos = photos.reverse().sort(function() {return 0.5 - Math.random()});
+    }
+    this.photos.push(photos); 
     this.photos = this.photos.flatten();
   },
   drop:function() {
@@ -37,7 +40,7 @@ Stack.prototype = {
     return photo;
   },
   insert:function(photo) {
-    this.container.insert({'top':photo}).firstDescendant().appear({'duration':this.options.get('fade_in')});
+    this.container.insert({'top':photo}).firstDescendant().appear({'duration':this.options.get('speed')});
     this.depth++;
   },
   cleanup:function() {
@@ -46,8 +49,8 @@ Stack.prototype = {
       victims.pop();
     }
     victims.each(function(victim) { 
-      victim.fade({'delay':this.options.get('fade_in'),'duration':(this.options.get('fade_in'))});
-      setTimeout(function() { victim.remove() }, (this.options.get('fade_in') * 2000));
+      victim.fade({'delay':this.options.get('speed'),'duration':(this.options.get('speed'))});
+      setTimeout(function() { victim.remove() }, (this.options.get('speed') * 2000));
     }.bind(this));
   },
   random:function() {

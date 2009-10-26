@@ -1,0 +1,43 @@
+= Stack 
+
+Stack is an neat little JS library for displaying a slideshow of flickr photos. It makes heavy
+use of CSS3 for a photo "look." See `sample.css` for one possible way to style your photos.
+
+== Install & Setup
+
+To get Stack just clone to your javascript directory (or somewhere temporary first so you don't
+clutter it with this readme or the sample.css file):
+
+  git clone git://github.com/cannikin/stack.git
+
+== Usage
+
+Using Stack is pretty simple:
+
+  <div id="flickr"></div>
+  <script type="text/javascript">
+    function jsonFlickrApi(response) {
+      stack.add(response.photos.photo);
+      stack.drop();
+    }
+    var stack = new Stack('flickr', { 'api_key':'01234567890123456789',
+                                      'photos':25,
+                                      'user_id':'123456789@N00' });
+  </script>
+  
+First you create a <div> that will contain your slideshow. Then, create an instance of Stack
+and tell it the id of the <div> you just created, along with a couple of options.
+
+=== Parameters
+
+* api_key => (required) your Flickr API key (see http://www.flickr.com/services/api/keys/apply/ to get yours)
+* photos => (optional, defaults to 25) How many photos you want in your stack
+* user_id => (optional) What user to pull photos from (see http://idgettr.com/ to get the user_id for a username)
+* tags => (optional) List of tags to search photos for
+* text => (optional) Open-ended text search, looks in a photo's title, description and tags
+* sort => (optional) How to sort the returned photos (defaults to descending by date uploaded [newest photos first])
+* randomize => (optional) Should stack randomize the order of the photos regardless of `sort`
+* keep => (optional, defaults to 2) How many photos to keep on the screen before removing ones in the background (for performance, the more you have stacked the worse the animation becomes)
+* min_rotate => (optional, defaults to -5) How far (in degrees) a photo can rotate counter-clockwise
+* max_rotate => (optional, defaults to 5) How far (in degrees) a photo can rotate clockwise
+* speed => (optional, defaults to 1) How long (in seconds) it takes for a photo to fade in
